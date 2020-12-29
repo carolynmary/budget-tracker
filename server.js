@@ -1,28 +1,36 @@
+// EXPRESS APP
 const express = require("express");
-const logger = require("morgan");
-const mongoose = require("mongoose");
-const compression = require("compression");
-
-const PORT = 3000;
-
 const app = express();
-
-app.use(logger("dev"));
-
+const compression = require("compression");
 app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/budget", {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
+// VARIABLES
+const PORT = process.env.PORT || 3000;
+const database = "budget_db";
 
-// routes
+// LOGGER
+const logger = require("morgan");
+app.use(logger("dev"));
+
+// DATABASE CONNECTION
+const mongoose = require("mongoose");
+mongoose.connect(
+  process.env.MONGODB_URI || `mongodb://localhost/${database}`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
+
+// ROUTES
 app.use(require("./routes/api.js"));
 
+// LISTEN
 app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+  console.log(`App running on http://localhost:${PORT}`);
 });
