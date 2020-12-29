@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/badge/License-ISC-green)</br>
 # Budget Tracker   
-[carolynmary.github.io/budget-tracker](https://carolynmary.github.io/budget-tracker/)
+[budget-tracker-cm.herokuapp.com](https://budget-tracker-cm.herokuapp.com/)
  
 - - -
 - - -
@@ -15,7 +15,7 @@
   
 ## How to Use 
 
-![demo](pathToFileHere)
+![demo](./assets/budget-demo.gif)
 
 
 ## License
